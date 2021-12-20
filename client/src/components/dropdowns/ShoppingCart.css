@@ -1,0 +1,36 @@
+.cart {
+  display: flex;
+  justify-content: right;
+}
+
+.cart button {
+  margin-top: 25px;
+}
+
+.cart button i {
+  margin: 0 5px;
+}
+
+.cart button .badge {
+  font-weight: bold !important;
+}
+
+.dropdown-content {
+  padding: 20px 10px;
+  margin: 20px 0;
+  top: 130px !important;
+}
+
+.dropdown-content li {
+  font-size: 0.7em;
+  cursor: default !important;
+}
+
+.dropdown-content .collection-item div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dropdown-content li:hover {
+  background-color: #fff !important;
+}

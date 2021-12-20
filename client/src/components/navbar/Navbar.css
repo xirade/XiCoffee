@@ -1,0 +1,19 @@
+nav .nav-wrapper {
+  display: flex;
+}
+
+button.sidenav-trigger,
+button.sidenav-trigger:active,
+button.sidenav-trigger:focus {
+  display: block;
+  outline: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+@media (min-width: 992px) {
+  button.sidenav-trigger {
+    display: none;
+  }
+}

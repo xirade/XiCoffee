@@ -25,7 +25,7 @@ export default function ShoppingCart({
             {totalItems}
           </span>
         ) : (
-          <span className="badge white-text"> empty </span>
+          <span className="badge white-text deep-orange accent-4"> empty </span>
         )}
       </button>
       <form

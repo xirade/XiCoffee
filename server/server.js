@@ -2,8 +2,11 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 require("dotenv").config({ path: "./.env" });
-const port = process.env.PORT || 5000;
-app.use(cors());
+const port = process.env.NODE_DOCKER_PORT || 8080;
+const corsOptions = {
+  origin: process.env.CLIENT_ORIGIN || "http://localhost:8081"
+}
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // iteracting with the file system

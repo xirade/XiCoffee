@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   server:
@@ -12,7 +12,7 @@ services:
       - ./server/:/src
       - /src/node_modules
     ports:
-      - "5000:5000"
+      - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
     depends_on:
       - mongo
     environment:
@@ -20,38 +20,36 @@ services:
       - ATLAS_URI
       - PORT
     networks:
-      - app-network
+      - backend
+      - frontend
+
   mongo:
     image: mongo
     volumes:
       - data-volume:/db
     ports:
-      - "27017:27017"
+      - $MONGODB_LOCAL_PORT:$MONGODB_DOCKER_PORT
     networks:
-      - app-network
+      - backend
+
   client:
     build:
       context: ./client
-      dockerfile: Dockerfile
-    image: myapp-client
-    container_name: myapp-react-client
-    command: npm start
-    volumes:
-      - ./client/:/src
-      - /src/node_modules
+      args:
+        - REACT_APP_API_BASE_URL=$CLIENT_API_BASE_URL
     depends_on:
       - server
     ports:
-      - "3000:3000"
+      - $REACT_LOCAL_PORT:$REACT_DOCKER_PORT
     networks:
-      - app-network
+      - frontend 
 
 networks:
-    app-network:
-        driver: bridge
+  backend:
+  frontend:
 
 volumes:
-    data-volume:
-    node_modules:
-    web-root:
-      driver: local
+  data-volume:
+  node_modules:
+  web-root:
+    driver: local

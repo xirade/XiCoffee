@@ -1,5 +1,4 @@
-import { useState } from "react/cjs/react.development";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 // constants
 import { API_URL, API_URL_CART_ADD, GET, POST } from "../../constants/api_vars";

@@ -1,6 +1,6 @@
 // constants
 import { ADD_TO_CART, CLEAR_CART, DATE_FORMAT } from "../constants/cart_vars";
-import {getDate} from "../utils/useDate";
+import { getDate } from "../utils/useDate";
 
 const initialState = [];
 

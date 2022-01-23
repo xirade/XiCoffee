@@ -3,7 +3,7 @@ const productsRoutes = express.Router();
 const dbo = require("../db/conn");
 const ObjectId = require("mongodb").ObjectId;
 
-productsRoutes.route("/product").get((req, res) => {
+productsRoutes.route("/api/product").get((req, res) => {
   let db_connect = dbo.getDb("productsDB");
   db_connect
     .collection("products")
@@ -15,7 +15,7 @@ productsRoutes.route("/product").get((req, res) => {
 });
 
 // This section will help you get a single record by id
-productsRoutes.route("/product/:id").get((req, res) => {
+productsRoutes.route("/api/product/:id").get((req, res) => {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId(req.params.id) };
   db_connect.collection("products").findOne(myquery, (err, result) => {
@@ -25,7 +25,7 @@ productsRoutes.route("/product/:id").get((req, res) => {
 });
 
 // This section will help you create a new product.
-productsRoutes.route("/product/add").post((req, response) => {
+productsRoutes.route("/api/product/add").post((req, response) => {
   let db_connect = dbo.getDb();
   let myobj = {
     _id: req.body._id,
@@ -42,7 +42,7 @@ productsRoutes.route("/product/add").post((req, response) => {
 });
 
 // This section will help you update a product by id.
-productsRoutes.route("/update/:id").post((req, response) => {
+productsRoutes.route("/api/update/:id").post((req, response) => {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId(req.params.id) };
   console.log(myquery);
@@ -65,7 +65,7 @@ productsRoutes.route("/update/:id").post((req, response) => {
 });
 
 // This section will help you delete a product
-productsRoutes.route("/:id").delete((req, response) => {
+productsRoutes.route("/api/:id").delete((req, response) => {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId(req.params.id) };
   db_connect.collection("products").deleteOne(myquery, (err, obj) => {

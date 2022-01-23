@@ -4,8 +4,8 @@ const cors = require("cors");
 require("dotenv").config({ path: "./.env" });
 const port = process.env.NODE_DOCKER_PORT || 8080;
 const corsOptions = {
-  origin: process.env.CLIENT_ORIGIN || "http://localhost:8081"
-}
+  origin: process.env.CLIENT_ORIGIN || "http://localhost:8088"
+};
 app.use(cors(corsOptions));
 app.use(express.json());
 

@@ -1,16 +1,18 @@
 version: "3.8"
 
 services:
-  server:
-    build:
-      context: ./server
-      dockerfile: Dockerfile
-    image: myapp-server
-    container_name: myapp-node-server
-    command: npm start
+  mongo:
+    image: mongo
     volumes:
-      - ./server/:/src
-      - /src/node_modules
+      - data-volume:/db
+    ports:
+      - $MONGODB_LOCAL_PORT:$MONGODB_DOCKER_PORT
+    networks:
+      - backend
+
+  app-api:
+    build:
+      ./server
     ports:
       - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
     depends_on:
@@ -23,26 +25,19 @@ services:
       - backend
       - frontend
 
-  mongo:
-    image: mongo
-    volumes:
-      - data-volume:/db
-    ports:
-      - $MONGODB_LOCAL_PORT:$MONGODB_DOCKER_PORT
-    networks:
-      - backend
 
-  client:
+  app-ui:
     build:
       context: ./client
       args:
         - REACT_APP_API_BASE_URL=$CLIENT_API_BASE_URL
     depends_on:
-      - server
+      - app-api
     ports:
       - $REACT_LOCAL_PORT:$REACT_DOCKER_PORT
     networks:
       - frontend 
+
 
 networks:
   backend:
@@ -51,5 +46,3 @@ networks:
 volumes:
   data-volume:
   node_modules:
-  web-root:
-    driver: local

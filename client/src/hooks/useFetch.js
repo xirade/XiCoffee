@@ -10,9 +10,9 @@ export function useFetch(url, method = "GET") {
     setOptions({
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
-      body: JSON.stringify(postData),
+      body: JSON.stringify(postData)
     });
   };
 
@@ -24,7 +24,7 @@ export function useFetch(url, method = "GET") {
       try {
         const res = await fetch(url, {
           ...fetchOptions,
-          signal: controller.signal,
+          signal: controller.signal
         });
 
         if (!res.ok) throw new Error("Could not fetch the data");

@@ -2,7 +2,7 @@ const express = require("express");
 const cartRoute = express.Router();
 const dbo = require("../db/conn");
 
-cartRoute.route("/cart").get((req, res) => {
+cartRoute.route("/api/cart").get((req, res) => {
   let db_connect = dbo.getDb("productsDB");
   db_connect
     .collection("cart")
@@ -13,7 +13,7 @@ cartRoute.route("/cart").get((req, res) => {
     });
 });
 
-cartRoute.route("/cart/add").post((req, response) => {
+cartRoute.route("/api/cart/add").post((req, response) => {
   console.log(req.body)
   let db_connect = dbo.getDb();
   let myobj = {
